@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,10 +23,20 @@ public class User implements Serializable {
     
     @Column(name = "username")
     private String username;
+    
+    @Column(name = "name")
     private String name;
+    
+    @Column(name = "lastname")
     private String lastName;
+    
+    @Column(name = "createdate")
     private Date createDate;
 
+    @Column
+    private Address address;
+    
+    
     public Integer getId() {
         return id;
     }
@@ -64,6 +75,15 @@ public class User implements Serializable {
     
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    @OneToOne(mappedBy = "user")
+    public Address getAddress() {
+	return address;
+    }
+
+    public void setAddress(Address address) {
+	this.address = address;
     }
     
 }
